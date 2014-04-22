@@ -1,0 +1,61 @@
+{
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "guest_os_type": "Debian_64",
+            "boot_command": [
+                "<esc><wait>",
+                "install <wait>",
+                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+                "debian-installer=en_US <wait>",
+                "auto <wait>",
+                "locale=en_US <wait>",
+                "kbd-chooser/method=us <wait>",
+                "netcfg/get_hostname={{ .Name }} <wait>",
+                "netcfg/get_domain=vagrantup.com <wait>",
+                "fb=false <wait>",
+                "debconf/frontend=noninteractive <wait>",
+                "console-setup/ask_detect=false <wait>",
+                "console-keymaps-at/keymap=us <wait>",
+                "keyboard-configuration/xkb-keymap=us <wait>",
+                "<enter><wait>"
+            ],
+            "boot_wait": "10s",
+            "disk_size": 10140,
+            "http_directory": "http",
+            "iso_checksum": "e7e9433973f082a297793c3c5010b2c5",
+            "iso_checksum_type": "md5",
+            "iso_url": "http://cdimage.debian.org/debian-cd/7.4.0/amd64/iso-cd/debian-7.4.0-amd64-netinst.iso",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -h now",
+            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+            "virtualbox_version_file": ".vbox_version",
+            "vboxmanage": [
+                [ "modifyvm", "{{.Name}}", "--memory", "256" ],
+                [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
+            ]
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "scripts": [
+                "scripts/virtualbox.sh",
+                "scripts/puppet.sh",
+                "scripts/vagrant.sh",
+                "scripts/zerodisk.sh"
+            ]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "compression_level": 9,
+            "output": "../build/wheezy64.box"
+        }
+    ]
+}

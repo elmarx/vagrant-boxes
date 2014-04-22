@@ -1,9 +1,8 @@
 # Prepare puppetlabs repo
 DEB=puppetlabs-release-wheezy.deb
 
-cd /tmp
 wget http://apt.puppetlabs.com/$DEB \
-    -O /tmp -q
+    -O /tmp/$DEB -q
 
 dpkg -i /tmp/$DEB
 rm /tmp/$DEB

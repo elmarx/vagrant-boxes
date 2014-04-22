@@ -3,6 +3,7 @@
         {
             "type": "virtualbox-iso",
             "guest_os_type": "Debian_64",
+            "vm_name": "wheezy64",
             "boot_command": [
                 "<esc><wait>",
                 "install <wait>",

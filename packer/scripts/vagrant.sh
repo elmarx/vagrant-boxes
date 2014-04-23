@@ -1,4 +1,4 @@
-# Set up Vagrant.
+# prepare the virtual machine for usage with vagrant
 
 date > /etc/vagrant_box_build_time
 

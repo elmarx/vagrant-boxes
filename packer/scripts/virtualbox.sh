@@ -1,5 +1,5 @@
 # install prerequisites for building the virtualbox kernel module
-apt-get -y install linux-headers-$(uname -r) build-essential
+apt-get -qq -y install linux-headers-$(uname -r) build-essential
 #apt-get -y install zlib1g-dev libssl-dev libreadline-gplv2-dev
 #apt-get -y install unzip
 
@@ -12,7 +12,7 @@ umount /mnt
 
 # cleanup
 rm $VBOX_ISO
-apt-get -y remove linux-headers-$(uname -r) build-essential
+apt-get -qq -y remove linux-headers-$(uname -r) build-essential
 
 
 # workaround for virtualbox 4.3.10, 

@@ -48,6 +48,8 @@
                 "scripts/virtualbox.sh",
                 "scripts/puppet.sh",
                 "scripts/vagrant.sh",
+                "scripts/firstboot.sh",
+                "scripts/minimize.sh",
                 "scripts/zerodisk.sh"
             ]
         }

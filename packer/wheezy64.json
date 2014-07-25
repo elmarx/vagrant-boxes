@@ -42,6 +42,11 @@
     ],
     "provisioners": [
         {
+            "type": "file",
+            "source": "files/wheezy64/firstboot.sh",
+            "destination": "/tmp/firstboot.sh"
+        },
+        {
             "type": "shell",
             "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
             "scripts": [

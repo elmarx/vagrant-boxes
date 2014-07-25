@@ -1,17 +1,16 @@
 #!/bin/sh - 
 
-set -o nounset                              # Treat unset variables as an error
+set -o nounset
 set -o errexit
 
+# execute firstboot.sh script to update box on very first boot
+sed -i s#"^exit 0$"#"test ! -f /var/cache/apt/pkgcache.bin \&\& sh /usr/local/sbin/firstboot.sh\n\nexit 0"# /etc/rc.local
 
-sed -i s#"^exit 0$"#"test -f /var/tmp/firstboot.sh \&\& sh /var/tmp/firstboot.sh\n\nexit 0"# /etc/rc.local
+# DELAYLOGIN=yes in rcS does not work as expected
+# but we want to disable ssh login while firstboot.sh runs,
+# so disable ssh
+update-rc.d ssh disable
 
-cat > /var/tmp/firstboot.sh << EOF
-apt-get update > /dev/null
-apt-get -y dist-upgrade
-aptitude forget-new
-
-rm \$0
-EOF
-
-
+mv /tmp/firstboot.sh /usr/local/sbin/firstboot.sh
+chmod 755 $_
+chown root:root $_

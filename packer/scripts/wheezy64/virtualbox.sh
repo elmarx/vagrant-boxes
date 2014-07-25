@@ -13,9 +13,3 @@ umount /mnt
 # cleanup
 rm $VBOX_ISO
 apt-get -qq -y remove linux-headers-$(uname -r) build-essential
-
-
-# workaround for virtualbox 4.3.10, 
-# see https://github.com/mitchellh/vagrant/issues/3341#issuecomment-39068048 
-# and https://www.virtualbox.org/ticket/12879
-ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions

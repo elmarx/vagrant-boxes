@@ -1,6 +1,4 @@
-# Prepare puppetlabs repo
-DEB=puppetlabs-release-wheezy.deb
-
+# generic script to install puppet repositories on systems with dpkg
 wget http://apt.puppetlabs.com/$DEB \
     -O /tmp/$DEB -q
 

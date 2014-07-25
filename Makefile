@@ -9,4 +9,4 @@ clean:
 mrproper:
 	rm -rf packer/packer_cache
 
-.PHONY: clean mrproper
+.PHONY: clean mrproper wheezy64

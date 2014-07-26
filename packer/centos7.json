@@ -1,0 +1,64 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "boot_command": [
+        "<up><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos7/ks.cfg<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 10240,
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+      "iso_checksum": "ee505335bcd4943ffc7e6e6e55e5aaa8da09710b6ceecda82a5619342f1d24d9",
+      "iso_checksum_type": "sha256",
+      "iso_url": "{{user `mirror`}}/7.0.1406/isos/x86_64/CentOS-7.0-1406-x86_64-DVD.iso",
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "10000s",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "480"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "1"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "centos7"
+    }
+  ],
+  "provisioners": [
+    {
+      "execute_command": "echo 'vagrant' | sudo -S -E bash '{{.Path}}'",
+      "scripts": [
+        "scripts/centos7/fix-slow-dns.sh",
+        "scripts/centos7/virtualbox.sh",
+        "scripts/common/sshd.sh",
+        "scripts/common/vagrant.sh",
+        "scripts/centos7/cleanup.sh",
+        "scripts/common/zerodisk.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "post-processors": [
+    {
+      "output": "../build/centos7.box",
+      "type": "vagrant",
+      "compression_level": 9
+    }
+  ],
+  "variables": {
+    "mirror": "http://ftp.hosteurope.de/mirror/centos.org"
+  }
+}
+

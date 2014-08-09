@@ -43,21 +43,21 @@
     "provisioners": [
         {
             "type": "file",
-            "source": "files/wheezy64/firstboot.sh",
+            "source": "files/debian/firstboot.sh",
             "destination": "/tmp/firstboot.sh"
         },
         {
             "type": "shell",
-            "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'",
+            "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
             "scripts": [
-                "scripts/wheezy64/virtualbox.sh",
-                "scripts/common/puppet-deb.sh",
-                "scripts/wheezy64/vagrant.sh",
-                "scripts/wheezy64/firstboot.sh",
-                "scripts/wheezy64/minimize.sh",
+                "scripts/debian/virtualbox.sh",
+                "scripts/debian/puppet.sh",
+                "scripts/debian/vagrant.sh",
+                "scripts/debian/firstboot.sh",
+                "scripts/debian/minimize.sh",
                 "scripts/common/zerodisk.sh"
             ],
-            "environment_vars": [ "DEB=puppetlabs-release-wheezy.deb" ]
+            "environment_vars": [ "VERSION=wheezy64" ]
         }
     ],
     "post-processors": [

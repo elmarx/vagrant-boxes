@@ -2,6 +2,10 @@ wheezy64:
 	mkdir -p build
 	cd packer; packer build -force wheezy64.json
 
+jessie: 
+	mkdir -p build
+	cd packer; packer build -force jessie.json
+
 centos7: 
 	mkdir -p build
 	cd packer; packer build -force centos7.json

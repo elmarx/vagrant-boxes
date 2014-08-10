@@ -25,7 +25,41 @@ case "$VERSION" in
             debconf-i18n 
             krb5-locales 
             geoip-database 
-            ntp 
+            patch
+            task-english
+            busybox
+            console-setup
+            xkb-data
+            wamerican
+            texinfo
+            iamerican
+            ibritish
+            ienglish-common
+            ispell
+            man-db
+            groff-base
+            dictionaries-common
+            xml-core
+            sgml-base
+            kbd
+            console-setup-linux
+            keyboard-configuration
+            laptop-detect
+            reportbug
+            python-reportbug
+            bc
+            dc
+            manpages
+            pciutils
+            tasksel
+            tasksel-data
+            libpipeline1
+            dmidecode
+            apt-listchanges
+            python-support
+            installation-report
+            procmail
+            m4
         "
         ;;
     jessie)
@@ -50,7 +84,41 @@ case "$VERSION" in
             debconf-i18n 
             krb5-locales 
             geoip-database 
-            ntp 
+            patch
+            task-english
+            busybox
+            console-setup
+            xkb-data
+            wamerican
+            texinfo
+            iamerican
+            ibritish
+            ienglish-common
+            ispell
+            man-db
+            groff-base
+            dictionaries-common
+            xml-core
+            sgml-base
+            kbd
+            console-setup-linux
+            keyboard-configuration
+            laptop-detect
+            reportbug
+            python-reportbug
+            bc
+            dc
+            manpages
+            pciutils
+            tasksel
+            tasksel-data
+            libpipeline1
+            dmidecode
+            apt-listchanges
+            python-support
+            installation-report
+            procmail
+            m4
         "
         ;;
     *)

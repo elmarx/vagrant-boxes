@@ -15,7 +15,6 @@ case "$VERSION" in
             xauth 
             eject 
             dpkg-dev 
-            libc6-dev 
             discover 
             db5.1-util 
             debian-faq 
@@ -53,7 +52,6 @@ case "$VERSION" in
             pciutils
             tasksel
             tasksel-data
-            libpipeline1
             dmidecode
             apt-listchanges
             python-support
@@ -63,12 +61,8 @@ case "$VERSION" in
         "
         ;;
     jessie)
+        apt-get install -y pinentry-curses
         PLIST="
-            gcc-4.7 
-            gcc-4.6 
-            python2.6 
-            python2.6-minimal 
-            cpp-4.7 
             nano 
             w3m 
             xauth 
@@ -106,9 +100,11 @@ case "$VERSION" in
             laptop-detect
             reportbug
             python-reportbug
+            pinentry-gtk2
             bc
             dc
             manpages
+            manpages-dev
             pciutils
             tasksel
             tasksel-data

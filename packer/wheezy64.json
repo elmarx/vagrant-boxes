@@ -22,7 +22,7 @@
                 "<enter><wait>"
             ],
             "boot_wait": "5s",
-            "disk_size": 10140,
+            "disk_size": 10240,
             "http_directory": "http",
             "iso_checksum": "8a3c2ad7fd7a9c4c7e9bcb5cae38c135",
             "iso_checksum_type": "md5",

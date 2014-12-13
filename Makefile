@@ -1,6 +1,6 @@
-wheezy64: 
+wheezy: 
 	mkdir -p build
-	cd packer; packer build -force wheezy64.json
+	cd packer; packer build -force wheezy.json
 
 jessie: 
 	mkdir -p build
@@ -11,7 +11,7 @@ centos7:
 	cd packer; packer build -force centos7.json
 
 install:
-	vagrant box add -f wheezy64 build/wheezy64.box
+	vagrant box add -f wheezy build/wheezy.box
 	vagrant box add -f centos7 build/centos7.box
 
 clean:
@@ -21,4 +21,4 @@ clean:
 mrproper:
 	rm -rf packer/packer_cache
 
-.PHONY: clean mrproper wheezy64
+.PHONY: clean mrproper wheezy

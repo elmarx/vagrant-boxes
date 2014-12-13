@@ -42,17 +42,11 @@
     ],
     "provisioners": [
         {
-            "type": "file",
-            "source": "files/debian/firstboot.sh",
-            "destination": "/tmp/firstboot.sh"
-        },
-        {
             "type": "shell",
             "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
             "scripts": [
                 "scripts/debian/virtualbox.sh",
                 "scripts/debian/vagrant.sh",
-                "scripts/debian/firstboot.sh",
                 "scripts/debian/minimize.sh",
                 "scripts/common/zerodisk.sh"
             ],

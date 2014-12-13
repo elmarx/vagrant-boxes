@@ -3,11 +3,11 @@
         {
             "type": "virtualbox-iso",
             "guest_os_type": "Debian_64",
-            "vm_name": "wheezy64",
+            "vm_name": "wheezy",
             "boot_command": [
                 "<esc><wait>",
                 "install <wait>",
-                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/wheezy64/preseed.cfg <wait>",
+                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/wheezy/preseed.cfg <wait>",
                 "debian-installer=en_US <wait>",
                 "auto <wait>",
                 "locale=en_US <wait>",
@@ -42,29 +42,22 @@
     ],
     "provisioners": [
         {
-            "type": "file",
-            "source": "files/debian/firstboot.sh",
-            "destination": "/tmp/firstboot.sh"
-        },
-        {
             "type": "shell",
             "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
             "scripts": [
                 "scripts/debian/virtualbox.sh",
-                "scripts/debian/puppet.sh",
                 "scripts/debian/vagrant.sh",
-                "scripts/debian/firstboot.sh",
                 "scripts/debian/minimize.sh",
                 "scripts/common/zerodisk.sh"
             ],
-            "environment_vars": [ "VERSION=wheezy64" ]
+            "environment_vars": [ "VERSION=wheezy" ]
         }
     ],
     "post-processors": [
         {
             "type": "vagrant",
             "compression_level": 9,
-            "output": "../build/wheezy64.box"
+            "output": "../build/wheezy.box"
         }
     ]
 }

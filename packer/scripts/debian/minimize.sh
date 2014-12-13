@@ -3,7 +3,7 @@ set -o nounset
 set -o errexit
 
 case "$VERSION" in
-    wheezy64)
+    wheezy)
         PLIST="
             gcc-4.7 
             gcc-4.6 
@@ -127,7 +127,7 @@ aptitude -y purge $PLIST
 # clean up pending packages: TODO: combine this with previous command!?
 aptitude install -f -y
 
-# remove apt indices, restored at first boot
+# remove apt indices, they're restored with the first apt-get update run, so no big loss
 rm -rf /var/lib/apt/lists/*
 rm -rf /var/cache/apt/*
 

@@ -1,0 +1,49 @@
+{
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "guest_os_type": "Fedora_64",
+            "vm_name": "packer-fedora21",
+            "iso_checksum": "a6a2e83bb409d6b8ee3072ad07faac0a54d79c9ecbe3a40af91b773e2d843d8e",
+            "iso_checksum_type": "sha256",
+            "iso_url": "http://download.fedoraproject.org/pub/fedora/linux/releases/21/Server/x86_64/iso/Fedora-Server-DVD-x86_64-21.iso",
+            "boot_command": [
+                "i<tab><wait>",
+                " ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/ks.cfg <wait>",
+                "<enter><wait>"
+            ],
+            "boot_wait": "5s",
+            "disk_size": 10240,
+            "http_directory": "http",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "10000s",
+            "shutdown_command": "sudo /sbin/shutdown -h now",
+            "vboxmanage": [
+                [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+                [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
+            ]
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
+            "scripts": [ 
+                "scripts/common/sshd.sh",
+                "scripts/common/vagrant.sh",
+                "scripts/fedora/virtualbox.sh",
+                "scripts/fedora/cleanup.sh",
+                "scripts/common/zerodisk.sh"
+            ]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "compression_level": 9,
+            "output": "../build/fedora21.box"
+        }
+    ]
+}

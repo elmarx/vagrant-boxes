@@ -6,6 +6,10 @@ jessie:
 	mkdir -p build
 	cd packer; packer build -force jessie.json
 
+fedora:
+	mkdir -p build
+	cd packer; packer build -force fedora21.json
+
 centos7: 
 	mkdir -p build
 	cd packer; packer build -force centos7.json

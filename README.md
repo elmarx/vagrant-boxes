@@ -17,7 +17,7 @@ Features for wheezy (Why did I built my own box, why use this box instead of oth
 
 - *size*: currently, the wheezy.box file is 148MB compared to e.g. chef's debian-7.4 box with 280 MB, that's nearly 50%
 - *standard uid*: chef's debian box has uid 900 for the vagrant user. That's cumbersome when working with nfs-shares and your host's user has uid 1000 nevertheless
-- *updated*: I update the base-box in a timely manner if an debian releases a new dot-version (i.e. 7.6 to 7.7)
+- *updated*: I update the base-box in a timely manner if debian releases a new dot-version (i.e. 7.6 to 7.7)
 
 Previous features
 -----------------
